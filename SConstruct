@@ -5,7 +5,7 @@ import platform
 if platform.system() == 'Linux':
     env = Environment()
 elif platform.system() == 'Windows':
-    env = Environment(tools = ['mingw'])
+    env = Environment(ENV = os.environ, tools = ['mingw'])
 else:
     print('Error: Unsupported platform (' + platform.system() + ')')
     Exit(1)

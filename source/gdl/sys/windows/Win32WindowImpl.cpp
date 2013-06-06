@@ -18,10 +18,10 @@ Win32WindowImpl::Win32WindowImpl(const std::string& title, int left, int top, un
 	window.lpfnWndProc		= &Win32WindowImpl::onEvent;
 	window.cbClsExtra		= 0;
 	window.cbWndExtra		= 0;
-	window.hppInstance		= ::GetModuleHandle(0);
-	window.hppIcon			= 0;
-	window.hppCursor			= ::LoadCursor(NULL, IDC_ARROW);;
-	window.hppbrBackground	= 0;
+	window.hInstance		= ::GetModuleHandle(0);
+	window.hIcon			= 0;
+	window.hCursor			= ::LoadCursor(NULL, IDC_ARROW);;
+	window.hbrBackground	= 0;
 	window.lpszMenuName		= 0;
 	window.lpszClassName	= CLASS_NAME.c_str();
 	if (!::RegisterClass(&window))
@@ -49,12 +49,12 @@ Win32WindowImpl::Win32WindowImpl(const std::string& title, int left, int top, un
 	rid[0].usUsagePage = 1;
 	rid[0].usUsage = 2;
 	rid[0].dwFlags = 0;
-	rid[0].hppwndTarget = nullptr;
+	rid[0].hwndTarget = nullptr;
 
 	rid[1].usUsagePage = 1;
 	rid[1].usUsage = 6;
 	rid[1].dwFlags = 0;
-	rid[1].hppwndTarget = nullptr;
+	rid[1].hwndTarget = nullptr;
 
 	if (RegisterRawInputDevices((PCRAWINPUTDEVICE)rid, 2, sizeof(rid[0])) == FALSE)
 	{

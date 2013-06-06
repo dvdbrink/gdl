@@ -6,12 +6,12 @@ Note: This project is not suitable for production quality software in any way wh
 
 * Exercise in the C++ programming language (mainly C++11)
 * Learning environment for low-level game development related systems
-* To provide open source code for other beginning game developers
+* To provide open source code as a reference for other beginning game developers
 
 ## Features
 
 * Linux and Windows support
-* Window and OpenGL Context
+* Window and OpenGL Context creation
 * OpenGL wrapper including automatic reference counting for OpenGL resources
 * OpenAL wrapper
 * Basic JSON parser
@@ -28,8 +28,9 @@ Note: This project is not suitable for production quality software in any way wh
 
 ###### Dependencies
 
+* OpenGL 3.3+ graphics card
 * OpenGL libraries and headers
-* (Linux only) OpenAL libraries and headers
+* (Linux only) OpenAL libraries
 
 ###### Compilation
 
@@ -45,13 +46,16 @@ Build the project using the [SCons](http://scons.org) build tool:
 
 ###### Compilation has been tested with the following compilers:
 
-* Clang 3.2
-* GCC 4.8.0
 * GCC 4.8.1
-* MinGW 4.8.0
+* MinGW 4.8.1
 
-Note: Clang 3.3 and GCC/MinGW 4.7.x should also work
+Note: Clang 3.2+ and GCC/MinGW 4.7.x should also work
 
+###### Running examples
+
+Note: (Windows only) For now you should manually copy the 'example/resource' folder into the 'build/bin' folder.
+
+The binaries can be found in the 'build/bin' folder and should run out of the box assuming all dependencies are met.
 
 ## License
 
@@ -75,4 +79,4 @@ Permission is granted to anyone to use this software for any purpose, including 
 
 [OpenAL Soft](http://kcat.strangesoft.net/openal.html), an LGPL-licensed, cross-platform, software implementation of the OpenAL 3D audio API.
 
-[Sean Barret's](http://nothings.org/) public domain image loading, ogg vorbis decoding and truetype rasterization libraries.
+[Sean Barrett's](http://nothings.org/) public domain image loading, ogg vorbis decoding and truetype rasterization libraries.

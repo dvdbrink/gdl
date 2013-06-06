@@ -3,7 +3,7 @@
 #include <gdl/ogl/OpenGL.hpp>
 #include <gdl/log/Emit.hpp>
 
-#include <windows.hpp>
+#include <windows.h>
 
 namespace gdl
 {
