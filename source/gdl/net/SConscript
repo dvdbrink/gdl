@@ -1,0 +1,7 @@
+import os
+
+Import('env')
+
+penv = env.Clone()
+penv.VariantDir(os.path.join(env['OBJDIR'], 'gdl/net'), '.', duplicate = 0)
+penv.SharedLibrary(os.path.join(env['BINDIR'], 'gdl-net'), Glob(os.path.join(env['OBJDIR'], 'gdl/net/*.cpp')))

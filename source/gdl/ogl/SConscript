@@ -1,0 +1,25 @@
+import os
+import platform
+
+Import('env')
+
+penv = env.Clone()
+
+if platform.system() == 'Linux':
+    conf = Configure(penv)
+    if not conf.CheckLib('GL'):
+        Exit(1)
+    penv = conf.Finish()
+    penv.Append(LIBS = ['GL'])
+elif platform.system() == 'Windows':
+    penv.Append(LIBS = ['gdi32', 'opengl32'])
+
+penv.VariantDir(os.path.join(env['OBJDIR'], 'gdl/ogl'), '.', duplicate = 0)
+
+sources = Glob(os.path.join(env['OBJDIR'], 'gdl/ogl/*.cpp'))
+if platform.system() == 'Linux':
+    sources += Glob(os.path.join(env['OBJDIR'], 'gdl/ogl/linux/*.cpp'))
+elif platform.system() == 'Windows':
+    sources += Glob(os.path.join(env['OBJDIR'], 'gdl/ogl/windows/*.cpp'))
+
+penv.SharedLibrary(os.path.join(env['BINDIR'], 'gdl-ogl'), sources)

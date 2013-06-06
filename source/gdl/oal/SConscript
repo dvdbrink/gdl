@@ -1,0 +1,18 @@
+import os
+import platform
+
+Import('env')
+
+penv = env.Clone()
+
+if platform.system() == 'Linux':
+    conf = Configure(penv)
+    if not conf.CheckLib('openal'):
+        Exit(1)
+    penv = conf.Finish()
+    penv.Append(LIBS = ['openal'])
+elif platform.system() == 'Windows':
+    penv.Append(LIBS = ['openal32'], LIBPATH = '#external/lib/windows/x64')
+
+penv.VariantDir(os.path.join(env['OBJDIR'], 'gdl/oal'), '.', duplicate = 0)
+penv.SharedLibrary(os.path.join(env['BINDIR'], 'gdl-oal'), Glob(os.path.join(env['OBJDIR'], 'gdl/oal/*.cpp')))

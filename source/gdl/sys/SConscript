@@ -1,0 +1,23 @@
+import os
+import platform
+
+Import('env')
+
+penv = env.Clone()
+
+if platform.system() == 'Linux':
+    conf = Configure(penv)
+    if not conf.CheckLib('X11'):
+        Exit(1)
+    penv = conf.Finish()
+    penv.Append(LIBS = ['X11'])
+
+penv.VariantDir(os.path.join(env['OBJDIR'], 'gdl/sys'), '.', duplicate = 0)
+
+sources = Glob(os.path.join(env['OBJDIR'], 'gdl/sys/*.cpp'))
+if platform.system() == 'Linux':
+    sources += Glob(os.path.join(env['OBJDIR'], 'gdl/sys/linux/*.cpp'))
+elif platform.system() == 'Windows':
+    sources += Glob(os.path.join(env['OBJDIR'], 'gdl/sys/windows/*.cpp'))
+
+penv.SharedLibrary(os.path.join(env['BINDIR'], 'gdl-sys'), sources)

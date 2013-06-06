@@ -1,0 +1,29 @@
+import os
+import platform
+
+Import('env')
+
+examples = [
+    'triangle',
+    'game'
+]
+
+penv = env.Clone()
+penv.Append(
+    LIBS = ['gdl-oal', 'gdl-ces', 'gdl-ogl', 'gdl-gui', 'gdl-sys'],
+    LIBPATH = env['LIBDIR'],
+    RPATH = env.Literal('\\$$ORIGIN')
+)
+
+for example in examples:
+    ppenv = penv.Clone()
+    ppenv.Append(CPPPATH = Glob(os.path.join('include', example)))
+    ppenv.VariantDir(os.path.join(env['OBJDIR'], example), os.path.join('source', example), duplicate = 0)
+    ppenv.Program(os.path.join(env['BINDIR'], example), Glob(os.path.join(env['OBJDIR'], example, '*.cpp')))
+
+# Symlink resource folder in bin directory (Linux only)
+if platform.system() == 'Linux':
+    if not os.path.exists(Dir('#').abspath + '/build/bin/resource'):
+        if not os.path.exists(Dir('#').abspath + '/build/bin'):
+            os.makedirs(Dir('#').abspath + '/build/bin')
+        os.symlink(Dir('#').abspath + '/example/resource', Dir('#').abspath + '/build/bin/resource')

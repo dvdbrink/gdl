@@ -1,0 +1,13 @@
+import os
+
+Import('env')
+
+penv = env.Clone()
+
+penv.Append(
+    LIBS = ['gdl-ogl'],
+    LIBPATH = env['LIBDIR'],
+    RPATH = env.Literal('\\$$ORIGIN')
+)
+penv.VariantDir(os.path.join(env['OBJDIR'], 'gdl/gui'), '.', duplicate = 0)
+penv.SharedLibrary(os.path.join(env['BINDIR'], 'gdl-gui'), Glob(os.path.join(env['OBJDIR'], 'gdl/gui/*.cpp')))
