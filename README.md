@@ -12,7 +12,7 @@ Note: This project is not suitable for production quality software in any way wh
 
 * Linux and Windows support
 * Window and OpenGL Context creation
-* OpenGL wrapper including automatic reference counting for OpenGL resources
+* OpenGL wrapper with automatic reference counting for OpenGL resources
 * OpenAL wrapper
 * Basic JSON parser
 * Basic component-entity-system implementation
@@ -28,9 +28,9 @@ Note: This project is not suitable for production quality software in any way wh
 
 ###### Dependencies
 
-* OpenGL 3.3+ graphics card
-* OpenGL libraries and headers
-* (Linux only) OpenAL libraries
+* OpenGL 3.3+ supported graphics card
+* OpenGL headers and libraries
+* OpenAL libraries (Windows: check [OpenAL.org](http://openal.org), Linux: install from your distros package repository)
 
 ###### Compilation
 
@@ -80,3 +80,4 @@ Permission is granted to anyone to use this software for any purpose, including 
 [OpenAL Soft](http://kcat.strangesoft.net/openal.html), an LGPL-licensed, cross-platform, software implementation of the OpenAL 3D audio API.
 
 [Sean Barrett's](http://nothings.org/) public domain image loading, ogg vorbis decoding and truetype rasterization libraries.
+
